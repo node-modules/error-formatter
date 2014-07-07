@@ -1,0 +1,35 @@
+{
+  "name": "error-formater",
+  "version": "0.0.0",
+  "description": "format an error into string for log",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:node-modules/error-formater.git"
+  },
+  "keywords": [
+    "error",
+    "log",
+    "string",
+    "json"
+  ],
+  "author": "dead_horse <dead_horse@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/node-modules/error-formater/issues"
+  },
+  "homepage": "https://github.com/node-modules/error-formater",
+  "devDependencies": {
+    "mocha": "^1.20.1",
+    "should": "^4.0.4"
+  },
+  "dependencies": {
+    "utility": "^0.1.16"
+  },
+  "files": [
+    "index.js"
+  ]
+}
