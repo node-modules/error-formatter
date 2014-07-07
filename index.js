@@ -33,7 +33,7 @@ function  formater(err, json) {
   };
 
   if (err.name === 'Error' && typeof err.code === 'string') {
-    err.name = err.code + err.name;
+    infos.name = err.code + err.name;
   }
 
   if (err.host) {
