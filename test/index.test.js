@@ -26,7 +26,6 @@ describe('error-formater', function () {
     s.should.containEql('domainThrown:');
     s.should.containEql('URL:');
     s.should.containEql('Data: {"foo":"bar"}');
-    console.log(s);
   });
 
   it('should formate error to json', function() {
