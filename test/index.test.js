@@ -28,9 +28,32 @@ describe('error-formater', function () {
     s.should.containEql('Data: {"foo":"bar"}');
   });
 
-  it('should formate error to json', function() {
-    var s = formater(err, true);
+  it('should formate error to json', function () {
+    var s = formater.json(err);
     s.should.have.keys([
+      'name',
+      'message',
+      'url',
+      'data',
+      'pid',
+      'code',
+      'host',
+      'domainThrown',
+      'time',
+      'hostname',
+      'stack'
+    ]);
+  });
+
+  it('should formate both ok', function () {
+    var s = formater.both(err);
+    s.text.should.containEql('DUPLICATEError');
+    s.text.should.containEql('pid:');
+    s.text.should.containEql('domainThrown:');
+    s.text.should.containEql('URL:');
+    s.text.should.containEql('Data: {"foo":"bar"}');
+
+    s.json.should.have.keys([
       'name',
       'message',
       'url',

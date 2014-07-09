@@ -18,9 +18,47 @@ var utility = require('utility');
  * Expose `formater`
  */
 
-module.exports = formater;
+module.exports = text;
+text.json = json;
+text.both = both;
 
-function  formater(err, json) {
+
+function text(err) {
+  var infos = json(err);
+  return util.format('%s nodejs.%s: %s\npid: %s\ndomainThrown: %s\nHost: %s\nURL: %s\nData: %j\n%s\n\n',
+    infos.time,
+    infos.name,
+    infos.stack,
+    infos.pid,
+    infos.domainThrown,
+    infos.hostname,
+    infos.url,
+    infos.data,
+    infos.time
+  );
+}
+
+function both(err) {
+  var infos = json(err);
+  var text = util.format('%s nodejs.%s: %s\npid: %s\ndomainThrown: %s\nHost: %s\nURL: %s\nData: %j\n%s\n\n',
+    infos.time,
+    infos.name,
+    infos.stack,
+    infos.pid,
+    infos.domainThrown,
+    infos.hostname,
+    infos.url,
+    infos.data,
+    infos.time
+  );
+
+  return {
+    text: text,
+    json: infos
+  }
+}
+
+function json(err) {
   if (!(err instanceof Error)) throw new TypeError('input non-error object: ' + err);
 
   var infos = {
@@ -49,18 +87,5 @@ function  formater(err, json) {
 
   var errStack = err.stack || 'no_stack';
   infos.stack = errName + ': ' + infos.message + '\n' + errStack.substring(errStack.indexOf('\n') + 1);
-
-  if (json) return infos;
-
-  return util.format('%s nodejs.%s: %s\npid: %s\ndomainThrown: %s\nHost: %s\nURL: %s\nData: %j\n%s\n\n',
-    infos.time,
-    infos.name,
-    infos.stack,
-    infos.pid,
-    infos.domainThrown,
-    infos.hostname,
-    infos.url,
-    infos.data,
-    infos.time
-  );
+  return infos;
 }

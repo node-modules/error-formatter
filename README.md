@@ -21,7 +21,8 @@ err.url = '/error';
 err.data = {foo: 'bar'};
 
 var msg = formater(err);
-var json = formater(err, true);
+var json = formater.json(err);
+var both = formater.bot(err);   // yield {text: text, json: json}
 ```
 
 yield
