@@ -1,6 +1,6 @@
 {
   "name": "error-formater",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "format an error into string / json for log",
   "main": "index.js",
   "scripts": {
