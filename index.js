@@ -25,32 +25,12 @@ text.both = both;
 
 function text(err) {
   var infos = json(err);
-  return util.format('%s nodejs.%s: %s\npid: %s\ndomainThrown: %s\nHost: %s\nURL: %s\nData: %j\n%s\n\n',
-    infos.time,
-    infos.name,
-    infos.stack,
-    infos.pid,
-    infos.domainThrown,
-    infos.hostname,
-    infos.url,
-    infos.data,
-    infos.time
-  );
+  return format(infos);
 }
 
 function both(err) {
   var infos = json(err);
-  var text = util.format('%s nodejs.%s: %s\npid: %s\ndomainThrown: %s\nHost: %s\nURL: %s\nData: %j\n%s\n\n',
-    infos.time,
-    infos.name,
-    infos.stack,
-    infos.pid,
-    infos.domainThrown,
-    infos.hostname,
-    infos.url,
-    infos.data,
-    infos.time
-  );
+  var text = format(infos);
 
   return {
     text: text,
@@ -88,4 +68,26 @@ function json(err) {
   var errStack = err.stack || 'no_stack';
   infos.stack = errName + ': ' + infos.message + '\n' + errStack.substring(errStack.indexOf('\n') + 1);
   return infos;
+}
+
+var formatTpl = '%s nodejs.%s: %s' + os.EOL +
+  'pid: %s' + os.EOL +
+  'domainThrown: %s' + os.EOL +
+  'Host: %s' + os.EOL +
+  'URL: %s' + os.EOL +
+  'Data: %j' + os.EOL +
+  '%s';
+
+function format(infos) {
+  return util.format(formatTpl,
+    infos.time,
+    infos.name,
+    infos.stack,
+    infos.pid,
+    infos.domainThrown,
+    infos.hostname,
+    infos.url,
+    infos.data,
+    infos.time
+  );
 }
