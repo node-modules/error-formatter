@@ -1,5 +1,5 @@
 {
-  "name": "error-formater",
+  "name": "error-formatter",
   "version": "1.0.3",
   "description": "format an error into string / json for log",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:node-modules/error-formater.git"
+    "url": "git@github.com:node-modules/error-formatter.git"
   },
   "keywords": [
     "error",
@@ -19,15 +19,15 @@
   "author": "dead_horse <dead_horse@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/node-modules/error-formater/issues"
+    "url": "https://github.com/node-modules/error-formatter/issues"
   },
-  "homepage": "https://github.com/node-modules/error-formater",
+  "homepage": "https://github.com/node-modules/error-formatter",
   "devDependencies": {
     "mocha": "^1.20.1",
     "should": "^4.0.4"
   },
   "dependencies": {
-    "utility": "^0.1.16"
+    "utility": "~1.0.0"
   },
   "files": [
     "index.js"
