@@ -76,7 +76,7 @@ var formatTpl = '%s nodejs.%s: %s' + os.EOL +
   'Host: %s' + os.EOL +
   'URL: %s' + os.EOL +
   'Data: %j' + os.EOL +
-  '%s';
+  '%s' + os.EOL;
 
 function format(infos) {
   return util.format(formatTpl,
