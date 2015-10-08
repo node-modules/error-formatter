@@ -16,7 +16,18 @@ var err = new Error('test error');
 err.host = '127.0.0.1';
 err.code = 'DUPLICATE';
 err.url = '/error';
-err.data = {foo: 'bar'};
+err.data = {
+  one: 'bar',
+  tow: {
+    a: 1,
+    third: {
+      hello: 'world',
+      fourth: {
+        foo: 'bar'
+      }
+    }
+  }
+};
 
 describe('error-formater', function () {
   it('should format error to string', function () {
@@ -25,7 +36,7 @@ describe('error-formater', function () {
     s.should.containEql('pid:');
     s.should.containEql('domainThrown:');
     s.should.containEql('URL:');
-    s.should.containEql('Data: {"foo":"bar"}');
+    s.should.containEql('Data: { one: \'bar\',\n  tow: { a: 1, third: { hello: \'world\', fourth: [Object] } } }');
   });
 
   it('should formate error to json', function () {
@@ -51,7 +62,7 @@ describe('error-formater', function () {
     s.text.should.containEql('pid:');
     s.text.should.containEql('domainThrown:');
     s.text.should.containEql('URL:');
-    s.text.should.containEql('Data: {"foo":"bar"}');
+    s.text.should.containEql('Data: { one: \'bar\',\n  tow: { a: 1, third: { hello: \'world\', fourth: [Object] } } }');
 
     s.json.should.have.keys([
       'name',

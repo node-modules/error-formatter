@@ -27,7 +27,7 @@
     "should": "^4.0.4"
   },
   "dependencies": {
-    "utility": "~1.0.0"
+    "utility": "^1.0.0"
   },
   "files": [
     "index.js"
