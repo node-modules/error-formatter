@@ -70,12 +70,20 @@ function json(err) {
   return infos;
 }
 
+var safeStringify = function (data, max) {
+  var str = util.inspect(data);
+  if (str.length > max) {
+    str = str.substring(0, max);
+  }
+  return str;
+};
+
 var formatTpl = '%s nodejs.%s: %s' + os.EOL +
   'pid: %s' + os.EOL +
   'domainThrown: %s' + os.EOL +
   'Host: %s' + os.EOL +
   'URL: %s' + os.EOL +
-  'Data: %j' + os.EOL +
+  'Data: %s' + os.EOL +
   '%s';
 
 function format(infos) {
@@ -87,7 +95,7 @@ function format(infos) {
     infos.domainThrown,
     infos.hostname,
     infos.url,
-    infos.data,
+    safeStringify(infos.data, 1024),
     infos.time
   );
 }
