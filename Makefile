@@ -3,16 +3,22 @@ REPORTER = tap
 TIMEOUT = 3000
 MOCHA_OPTS =
 
+ISTANBUL = ./node_modules/.bin/istanbul
+MOCHA = ./node_modules/mocha/bin/_mocha
+
 install:
 	@npm install --registry=http://registry.npm.taobao.org
 
 test:
 	@NODE_ENV=test ./node_modules/mocha/bin/mocha \
-		--harmony\
 		--reporter $(REPORTER) \
 		--timeout $(TIMEOUT) \
 		--require should \
 		$(MOCHA_OPTS) \
 		$(TESTS)
+
+test-cov:
+	@$(ISTANBUL) cover --report html $(MOCHA) -- -t $(TIMEOUT) \
+		--require should -R spec $(TESTS)
 
 .PHONY: test

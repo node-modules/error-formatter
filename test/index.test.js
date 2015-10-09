@@ -29,7 +29,7 @@ err.data = {
   }
 };
 
-describe('error-formater', function () {
+describe('error-formatter', function () {
   it('should format error to string', function () {
     var s = formater(err);
     s.should.containEql('DUPLICATEError');
@@ -39,7 +39,7 @@ describe('error-formater', function () {
     s.should.containEql('Data: { one: \'bar\',\n  tow: { a: 1, third: { hello: \'world\', fourth: [Object] } } }');
   });
 
-  it('should formate error to json', function () {
+  it('should format error to json', function () {
     var s = formater.json(err);
     s.should.have.keys([
       'name',
@@ -56,7 +56,13 @@ describe('error-formater', function () {
     ]);
   });
 
-  it('should formate both ok', function () {
+  it('should format non-error to json with exception', function () {
+    (function () {
+      formater.json("non-json");
+    }).should.throw(/input non-error object: non-json/);
+  });
+
+  it('should format both ok', function () {
     var s = formater.both(err);
     s.text.should.containEql('DUPLICATEError');
     s.text.should.containEql('pid:');
@@ -77,5 +83,18 @@ describe('error-formater', function () {
       'hostname',
       'stack'
     ]);
+  })
+
+  it('should format big data safely ok', function () {
+    var buff = new Buffer(1025).fill('a');
+    err.data = buff.toString();
+    var s = formater(err);
+    s.should.containEql('DUPLICATEError');
+    s.should.containEql('pid:');
+    s.should.containEql('domainThrown:');
+    s.should.containEql('URL:');
+    var matched = s.match(/Data: '([^\n]*)/);
+    var line = matched && matched[1];
+    line.length.should.lessThan(1025);
   })
 });
