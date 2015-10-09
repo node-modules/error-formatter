@@ -24,7 +24,8 @@
   "homepage": "https://github.com/node-modules/error-formatter",
   "devDependencies": {
     "mocha": "^1.20.1",
-    "should": "^4.0.4"
+    "should": "^4.0.4",
+    "istanbul": "*"
   },
   "dependencies": {
     "utility": "^1.0.0"
