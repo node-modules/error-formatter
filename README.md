@@ -68,7 +68,6 @@ yield
     at startup (node.js:124:16)
     at node.js:803:3
 pid: 91000
-domainThrown: false
 Host: dead-horsedeMacBook-Pro.local
 URL: /error
 Data: {"foo":"bar"}

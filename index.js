@@ -58,7 +58,6 @@ function json(err) {
     infos.host = err.host;
     infos.message += ' (' + infos.host + ')';
   }
-  infos.domainThrown = !!(err.domain_thrown || err.domainThrown);
   infos.name = infos.name + 'Exception';
   infos.time = utility.logDate();
   infos.hostname = os.hostname();
@@ -80,7 +79,6 @@ var safeStringify = function (data, max) {
 
 var formatTpl = '%s nodejs.%s: %s' + os.EOL +
   'pid: %s' + os.EOL +
-  'domainThrown: %s' + os.EOL +
   'Host: %s' + os.EOL +
   'URL: %s' + os.EOL +
   'Data: %s' + os.EOL +
@@ -92,7 +90,6 @@ function format(infos) {
     infos.name,
     infos.stack,
     infos.pid,
-    infos.domainThrown,
     infos.hostname,
     infos.url,
     safeStringify(infos.data, 1024),

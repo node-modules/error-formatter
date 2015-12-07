@@ -34,7 +34,6 @@ describe('error-formatter', function () {
     var s = formater(err);
     s.should.containEql('DUPLICATEError');
     s.should.containEql('pid:');
-    s.should.containEql('domainThrown:');
     s.should.containEql('URL:');
     s.should.containEql('Data: { one: \'bar\',\n  tow: { a: 1, third: { hello: \'world\', fourth: [Object] } } }');
   });
@@ -49,7 +48,6 @@ describe('error-formatter', function () {
       'pid',
       'code',
       'host',
-      'domainThrown',
       'time',
       'hostname',
       'stack'
@@ -66,7 +64,6 @@ describe('error-formatter', function () {
     var s = formater.both(err);
     s.text.should.containEql('DUPLICATEError');
     s.text.should.containEql('pid:');
-    s.text.should.containEql('domainThrown:');
     s.text.should.containEql('URL:');
     s.text.should.containEql('Data: { one: \'bar\',\n  tow: { a: 1, third: { hello: \'world\', fourth: [Object] } } }');
 
@@ -78,7 +75,6 @@ describe('error-formatter', function () {
       'pid',
       'code',
       'host',
-      'domainThrown',
       'time',
       'hostname',
       'stack'
@@ -91,7 +87,6 @@ describe('error-formatter', function () {
     var s = formater(err);
     s.should.containEql('DUPLICATEError');
     s.should.containEql('pid:');
-    s.should.containEql('domainThrown:');
     s.should.containEql('URL:');
     var matched = s.match(/Data: '([^\n]*)/);
     var line = matched && matched[1];
